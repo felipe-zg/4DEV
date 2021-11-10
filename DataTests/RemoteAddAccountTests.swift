@@ -34,7 +34,9 @@ class RemoteAddAccountTests: XCTestCase {
         sut.add()
         XCTAssertEqual(httpPostClientSpy.url, url)
     }
+}
 
+extension RemoteAddAccountTests {
     class HttpPostClientSpy: HttpPostClient {
         var url: URL?
         
