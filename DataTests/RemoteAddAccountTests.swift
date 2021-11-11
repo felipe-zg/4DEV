@@ -1,10 +1,3 @@
-//
-//  DataTests.swift
-//  DataTests
-//
-//  Created by Felipe Zêba on 11/9/21.
-//
-
 import XCTest
 import Domain
 
@@ -18,8 +11,7 @@ class RemoteAddAccount {
     }
     
     func add(model addAccoundModel: AddAccountModel) {
-        let data = try? JSONEncoder().encode(addAccoundModel)
-        httpPostClient.post(url: url, data: data)
+        httpPostClient.post(url: url, data: addAccoundModel.toData())
     }
 }
 
@@ -41,8 +33,7 @@ class RemoteAddAccountTests: XCTestCase {
         let addAccountModel = makeAddAccountModel()
         let (sut, httpPostClientSpy) = makeSut()
         sut.add(model: addAccountModel)
-        let data = try? JSONEncoder().encode(addAccountModel)
-        XCTAssertEqual(httpPostClientSpy.data, data)
+        XCTAssertEqual(httpPostClientSpy.data, addAccountModel.toData())
     }
 }
 
